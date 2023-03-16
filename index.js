@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 
 app.use(express.static('/public'));
@@ -7,8 +8,7 @@ app.use(cors({origin: 3000}))
 
 
 app.get('/', (req, res) => {
-    res.send('http://localhost:8080/images/backgroundBars.avg');
-    console.log('here')
+    console.log('At root get request')
 })
 
 app.listen(8080, () => {
