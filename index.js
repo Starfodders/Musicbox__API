@@ -14,18 +14,17 @@ const savedSongs = fs.readFileSync('./data/songs.json')
 const parsedSavedSongs = JSON.parse(savedSongs);
 
 app.get('/saved', (req, res) => {
-    console.log('At saved get request')
     res.send(parsedSavedSongs)
 })
 
 app.post('/saved', (req, res) => {
-    const {songName, yourName} = req.body;
+    const {songName, yourName, songFile} = req.body;
     const savedObj = {
         id: uuid(),
         songName,
         yourName,
         timestamp: new Date().toLocaleDateString(),
-        songFile: []
+        songFile
     }
     parsedSavedSongs.push(savedObj)
     fs.writeFileSync('./data/songs.json', JSON.stringify(parsedSavedSongs))
